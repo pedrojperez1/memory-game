@@ -14,9 +14,9 @@ if (lowscore) {
 
 board.addEventListener("click", function(e) {
     clicks++;
-    if (e.target.classList.contains("box")) {
+    if (e.target.classList.contains("box") && (flippedCards.length <= 1)) {
         flipCard(e.target.children[0]);
-        if (flippedCards.length > 1) {
+        if (flippedCards.length === 2) {
             checkAndFlipBack(flippedCards);
         }
     } else if (e.target.classList.contains("inner")) {
