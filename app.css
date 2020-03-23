@@ -1,6 +1,8 @@
 body {
     text-align: center;
     font-family: 'Inter', sans-serif;
+    color: whitesmoke;
+    background-color: #2D2926FF;
 }
 
 .grid {
@@ -15,7 +17,7 @@ body {
     display: flex;
 }
 .box {
-    background: tomato;
+    background: #E94B3CFF;
     margin: 5px;
     color: white;
     font-weight: bold;

@@ -6,6 +6,13 @@ let clicks = 0;
 let score = 0;
 
 initializeCards(board, shuffled_array);
+if (localStorage.lowscore) {
+    const lowscore = localStorage.getItem("lowscore");
+    const scoreboard = document.querySelector("#lowscore");
+    scoreboard.innerText = lowscore;
+} else {
+    scoreboard.innerText = "0";
+}
 
 board.addEventListener("click", function(e) {
     clicks++;
@@ -18,8 +25,11 @@ board.addEventListener("click", function(e) {
         flipCard(e.target);
     }
     if (score === 8) {
+        if (clicks < lowscore) {
+            localStorage.setItem("lowscore", clicks);
+        }
         if(confirm(`You won with ${clicks} clicks!`)){
-            window.location.reload();  
+            window.location.reload(); 
         }
     }
 })
