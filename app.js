@@ -10,9 +10,6 @@ let score = 0;
 initializeCards(board, shuffled_array);
 if (lowscore) {
     scoreboard.innerText = lowscore;
-} else {
-    scoreboard.innerText = "0";
-    localStorage.lowscore = 9999;
 }
 
 board.addEventListener("click", function(e) {
@@ -26,12 +23,15 @@ board.addEventListener("click", function(e) {
         flipCard(e.target);
     }
     if (score === 8) {
-        if (clicks < lowscore) {
+        if (lowscore) {
+            if (clicks < lowscore) {
+                localStorage.lowscore = clicks;
+            }
+        } else {
             localStorage.lowscore = clicks;
         }
-        if(confirm(`You won with ${clicks} clicks!`)){
-            window.location.reload(); 
-        }
+        confirm(`You won with ${clicks} clicks!`);
+        scoreboard.innerText = localStorage.lowscore;
     }
 })
 
