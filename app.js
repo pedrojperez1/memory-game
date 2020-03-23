@@ -1,17 +1,18 @@
 let flippedCards = [];
 const board = document.querySelector(".grid");
 const newGame = document.querySelector("#newgame");
+const lowscore = localStorage.getItem("lowscore");
+const scoreboard = document.querySelector("#lowscore");
 let shuffled_array = shuffle([1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8])
 let clicks = 0;
 let score = 0;
 
 initializeCards(board, shuffled_array);
-if (localStorage.lowscore) {
-    const lowscore = localStorage.getItem("lowscore");
-    const scoreboard = document.querySelector("#lowscore");
+if (lowscore) {
     scoreboard.innerText = lowscore;
 } else {
     scoreboard.innerText = "0";
+    localStorage.lowscore = 9999;
 }
 
 board.addEventListener("click", function(e) {
@@ -26,7 +27,7 @@ board.addEventListener("click", function(e) {
     }
     if (score === 8) {
         if (clicks < lowscore) {
-            localStorage.setItem("lowscore", clicks);
+            localStorage.lowscore = clicks;
         }
         if(confirm(`You won with ${clicks} clicks!`)){
             window.location.reload(); 
